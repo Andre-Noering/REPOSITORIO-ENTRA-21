@@ -61,29 +61,6 @@ public class Main {
             System.out.print("Digite o valor: R$");
             item.setValor(in.nextDouble());
             in.nextLine();
-            if (item instanceof Livro) {
-                Livro lItem = ((Livro) item);
-                System.out.print("Digite o autor: ");
-                lItem.setAutor(in.nextLine());
-                System.out.print("Digite a quantidade de páginas: ");
-                lItem.setQtdePaginas(in.nextInt());
-                System.out.print("Digite o ano de publicação: ");
-                lItem.setAnoPublicacao(in.nextInt());
-                in.nextLine();
-                System.out.print("Digite a edição do livro: ");
-                lItem.setEdicao(in.nextInt());
-                in.nextLine();
-            } else {
-                DVD dItem = ((DVD) item);
-                System.out.print("Digite o diretor do filme: ");
-                dItem.setDiretor(in.nextLine());
-                System.out.print("Digite a duração do filme: ");
-                dItem.setDuracao(in.nextDouble());
-                in.nextLine();
-                System.out.print("Digite o ano de lançamento do filme: ");
-                dItem.setAnoLancamento(in.nextInt());
-                in.nextLine();
-            }
             System.out.println("------------------------------------------------------");
             estante.adicionarItem(item);
         }
@@ -139,15 +116,11 @@ public class Main {
             System.out.println("A estante está cheia!");
         }
         for (int j = 0; j < 5; j++) {
-            System.out.println("---------------------------");
+
             Item itemf = estante.getItensEstante()[j];
             if (itemf != null) {
-                if (itemf instanceof Livro) {
-                    System.out.println(itemf.getTitulo() + "(" + itemf.getGenero() + "): " + ((Livro) itemf).getAnoPublicacao() + " - " + ((Livro) itemf).getAutor());
-                } else {
-                    System.out.println(itemf.getTitulo() + "(" + itemf.getGenero() + "): " + ((DVD) itemf).getAnoLancamento() + " - " + ((DVD) itemf).getDiretor());
-                }
-
+                System.out.println("---------------------------");
+                itemf.mostrarItem();
                 System.out.println("Posição na estante: " + j);
             }
         }

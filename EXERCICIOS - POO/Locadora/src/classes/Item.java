@@ -7,6 +7,8 @@ public abstract class Item {
     private String genero;
     private double valor;
     private Avaliacao[] avaliacoes=new Avaliacao[30];
+    public abstract void montarItem(Scanner in);
+    public abstract void mostrarItem();
     public void avaliar(){
         Scanner in=new Scanner(System.in);
         Avaliacao a=new Avaliacao();

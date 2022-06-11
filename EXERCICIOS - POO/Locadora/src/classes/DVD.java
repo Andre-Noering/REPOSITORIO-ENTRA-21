@@ -1,5 +1,7 @@
 package classes;
 
+import java.util.Scanner;
+
 public class DVD extends Item{
     private String diretor;
     private double duracao;
@@ -31,5 +33,20 @@ public class DVD extends Item{
 
     public void setDiretor(String diretor) {
         this.diretor = diretor;
+    }
+
+    @Override
+    public void mostrarItem() {
+        System.out.println(this.getTitulo() + "(" + this.getGenero() + "): " + this.getAnoLancamento() + " - " + this.getDiretor());
+    }
+    public void montarItem(Scanner in){
+        System.out.print("Digite o diretor do filme: ");
+        this.setDiretor(in.nextLine());
+        System.out.print("Digite a duração do filme: ");
+        this.setDuracao(in.nextDouble());
+        in.nextLine();
+        System.out.print("Digite o ano de lançamento do filme: ");
+        this.setAnoLancamento(in.nextInt());
+        in.nextLine();
     }
 }
