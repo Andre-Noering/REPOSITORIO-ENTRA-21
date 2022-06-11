@@ -5,6 +5,7 @@ public abstract class Lanche {
     private double valor;
     private String tipo;
 
+    public abstract void mostrarDetalhesComanda();
     public void adicionarIngrediente(String ingrediente) {
         for (int i = 0; i < 10; i++) {
             if (this.ingrediente[i] == null) {
@@ -13,6 +14,7 @@ public abstract class Lanche {
             }
         }
     }
+
 
     public String[] getIngrediente() {
         return ingrediente;
