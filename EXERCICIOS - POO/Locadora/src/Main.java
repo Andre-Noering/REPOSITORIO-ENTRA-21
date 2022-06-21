@@ -61,25 +61,37 @@ public class Main {
             System.out.print("Digite o valor: R$");
             item.setValor(in.nextDouble());
             in.nextLine();
+            item.montarItem(in);
             System.out.println("------------------------------------------------------");
             estante.adicionarItem(item);
         }
     }
 
     public static void buscarEAvaliarItem(Estante estante) {
+        int escolha = 0;
+        Item i = null;
         System.out.println("------------------------------------------------------");
         System.out.print("Informe o título do item procurado: ");
-        Item i = estante.buscarItem(in.nextLine());
-        if (i == null) {
-            System.out.println("Nenhum item encontrado!");
-        } else {
-            System.out.println("Primeiro resultado: " + i.getTitulo() + "\nVocê deseja: \n1 - Avaliar o item;\n2 - Ver avaliações;\n");
-            int escolha = in.nextInt();
-            switch (escolha) {
-                case 1:
-                    i.avaliar();
-                    break;
-                case 2:
+        String titulo=in.nextLine();
+            i = estante.buscarItem(titulo);
+            if (i == null) {
+                System.out.println("Nenhum item encontrado!");
+            } else {
+                System.out.println("Item encontrado: " + i.getTitulo() + "\nVocê deseja: \n1 - Avaliar o item;\n2 - Ver avaliações;\n3 - Continuar procurando o item (Caso o item encontrado não seja o desejado.)");
+                escolha = in.nextInt();
+                System.out.println("------------------------------------------------------");
+            }
+        switch (escolha) {
+            case 1:
+                i.avaliar();
+                break;
+            case 2:
+                if (i.getAvaliacoes()[0] == null) {
+                    System.out.println("Ainda não avaliaram esse item! Para avaliá-lo agora, digite 1. Se quiser voltar ao menu, digite qualquer outra coisa: ");
+                    if (in.nextLine().equals("1")) {
+                        i.avaliar();
+                    }
+                } else {
                     System.out.println("---------------------\nAVALIAÇÕES\n---------------------");
                     for (Avaliacao a : i.getAvaliacoes()) {
                         if (a != null) {
@@ -88,8 +100,9 @@ public class Main {
                     }
                     System.out.println("Nota geral: " + i.getTotalRating());
                     break;
-            }
+                }
         }
+
         System.out.println("------------------------------------------------------");
     }
 
