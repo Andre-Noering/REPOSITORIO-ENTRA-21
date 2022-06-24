@@ -1,35 +1,32 @@
 package classes.lanches;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
-public abstract class Sanduiche extends Lanche{
-    private String[] adicionais= new String[10];
+public abstract class Sanduiche extends Lanche {
+    private HashMap<String, Double> adicionais = new HashMap<>();
 
-    public String[] getAdicionais() {
+
+    public void adicionarAdicional(double valor, String adicional) {
+        this.adicionais.put(adicional, valor);
+    }
+
+    public HashMap<String, Double> getAdicionais() {
         return adicionais;
     }
 
-    public void setAdicionais(String[] adicionais) {
+    public void setAdicionais(HashMap<String, Double> adicionais) {
         this.adicionais = adicionais;
     }
 
-    public void adicionarAdicional(String adicional){
-        for (int i = 0; i < 10; i++) {
-            if (this.adicionais[i]==null) {
-                adicionais[i] = adicional;
-                break;
-            }
-        }
-    }
     @Override
     public void mostrarDetalhesComanda() {
+        if (!this.adicionais.isEmpty()) {
         System.out.println("====" + this.getTipo() + "====");
-        if (this.getAdicionais()[0] != null) {
-            System.out.println("-ADICIONAIS-");
-            for (String adicional : this.getAdicionais()) {
-                if (adicional != null) {
-                    System.out.println(adicional);
-                }
+        System.out.println("-ADICIONAIS-");
+            for (String adicional : this.getAdicionais().keySet()) {
+                System.out.printf("%s: R$%.2f\n", adicional, this.getAdicionais().get(adicional));
             }
         }
     }
@@ -37,11 +34,14 @@ public abstract class Sanduiche extends Lanche{
     @Override
     public void montarDetalhesLanche(Scanner in) {
         System.out.println("Deseja adicionais? (S/N)");
-        String adiconais = in.nextLine();
-        if (adiconais.equalsIgnoreCase("S")) {
-            for(int i = 0; i < 10; i++) {
+        String adicionais = in.nextLine();
+        if (adicionais.equalsIgnoreCase("S")) {
+            while (true) {
                 System.out.print("Informe o adicional: ");
-                this.adicionarAdicional(in.nextLine());
+                String adicional = in.nextLine();
+                System.out.print("Informe o valor do adicional: R$");
+                this.adicionarAdicional(in.nextDouble(), adicional);
+                in.nextLine();
                 System.out.println("Deseja adicionar mais adicionais? (S/N)");
                 String parada = in.nextLine();
                 if (parada.equalsIgnoreCase("N")) {
@@ -49,6 +49,15 @@ public abstract class Sanduiche extends Lanche{
                 }
             }
         }
+    }
+
+    @Override
+    public double getValor() {
+        double valorTotal = super.getValor();
+        for (Double valor : adicionais.values()) {
+            valorTotal += valor;
+        }
+        return valorTotal;
     }
 }
 
