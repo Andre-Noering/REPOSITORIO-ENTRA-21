@@ -5,6 +5,28 @@ import java.util.ArrayList;
 public class Aviao implements MeioTransporte {
     private ArrayList<AssentoVoo> assentos = new ArrayList<>();
 
+    public Aviao(int linhasCadeirasLuxo, int linhasCadeirasEconomicas) {
+        String cod = "";
+        String letrasLuxo="ABCD";
+        for (int i = 1; i <= linhasCadeirasLuxo; i++) {
+            for (int j = 0; j < 4; j++) {
+                AssentoVoo a = new AssentoVoo();
+                a.setClasse("Luxo");
+                a.setCodigo(letrasLuxo.charAt(j) + String.valueOf(i));
+                assentos.add(a);
+            }
+        }
+        String letrasEco="ABCDEF";
+        for (int i = 1; i <= linhasCadeirasEconomicas; i++) {
+            for (int j = 0; j < 6; j++) {
+                AssentoVoo a = new AssentoVoo();
+                a.setClasse("Econômico");
+                a.setCodigo(letrasEco.charAt(j) + String.valueOf(i));
+                assentos.add(a);
+            }
+        }
+    }
+
     //GETTERS & SETTERS
 
     public ArrayList<AssentoVoo> getAssentos() {
@@ -17,10 +39,9 @@ public class Aviao implements MeioTransporte {
 
     @Override
     public boolean verificaOcupacao(String assento) {
-        for (AssentoVoo a : assentos) {
-            if (a.getCodigo().equalsIgnoreCase(assento)) {
-                return a.isOcupado();
-            }
+        AssentoVoo a = (AssentoVoo) getAssento(assento);
+        if (a != null) {
+            return a.isOcupado();
         }
         return false;
     }
@@ -38,7 +59,7 @@ public class Aviao implements MeioTransporte {
 
     @Override
     public void mostrarAssentos() {
-        System.out.println(assentos);
+
     }
 
     @Override
@@ -50,5 +71,12 @@ public class Aviao implements MeioTransporte {
         }
         return null;
     }
-
+    public Assento getAssento(String assento,String classe){
+        for (AssentoVoo a : assentos) {
+            if (a.getCodigo().equalsIgnoreCase(assento)&&a.getClasse().equalsIgnoreCase(classe)) {
+                return a;
+            }
+        }
+        return null;
+    }
 }
