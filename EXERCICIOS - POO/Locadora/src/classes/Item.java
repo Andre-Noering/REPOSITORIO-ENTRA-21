@@ -1,14 +1,16 @@
 package classes;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
-public abstract class Item {
+public abstract class Item implements Criavel {
     private String titulo;
     private String genero;
-    private double valor;
-    private Avaliacao[] avaliacoes=new Avaliacao[30];
-    public abstract void montarItem(Scanner in);
-    public abstract void mostrarItem();
+    private double valorVenda;
+    private double valorLocacao;
+    private boolean emprestado;
+    private ArrayList<Avaliacao> avaliacoes;
+
     public void avaliar(){
         Scanner in=new Scanner(System.in);
         Avaliacao a=new Avaliacao();
@@ -19,12 +21,7 @@ public abstract class Item {
         in.nextLine();
         System.out.print("Digite seu feedback: ");
         a.setFeedback(in.nextLine());
-        for (int i=0;i<getAvaliacoes().length;i++){
-            if (getAvaliacoes()[i]==null){
-                getAvaliacoes()[i]=a;
-                break;
-            }
-        }
+        avaliacoes.add(a);
     }
     public double getTotalRating(){
         double totalRating=0.0;
@@ -56,20 +53,55 @@ public abstract class Item {
     public void setGenero(String genero) {
         this.genero = genero;
     }
-
-    public double getValor() {
-        return valor;
-    }
-
-    public void setValor(double valor) {
-        this.valor = valor;
-    }
-
-    public Avaliacao[] getAvaliacoes() {
+    public ArrayList<Avaliacao> getAvaliacoes() {
         return avaliacoes;
     }
 
-    public void setAvaliacoes(Avaliacao[] avaliacoes) {
+    public void setAvaliacoes(ArrayList<Avaliacao> avaliacoes) {
         this.avaliacoes = avaliacoes;
+    }
+
+    public double getValorVenda() {
+        return valorVenda;
+    }
+
+    public void setValorVenda(double valorVenda) {
+        this.valorVenda = valorVenda;
+    }
+
+    public double getValorLocacao() {
+        return valorLocacao;
+    }
+
+    public void setValorLocacao(double valorLocacao) {
+        this.valorLocacao = valorLocacao;
+    }
+
+    public boolean isEmprestado() {
+        return emprestado;
+    }
+
+    public void setEmprestado(boolean emprestado) {
+        this.emprestado = emprestado;
+    }
+
+    @Override
+    public Item montarItem(Scanner in) {
+        System.out.print("Digite o título: ");
+        this.setTitulo(in.nextLine());
+        System.out.print("Digite o gênero: ");
+        this.setGenero(in.nextLine());
+        System.out.print("Digite o valor de locação: R$");
+        this.setValorLocacao(in.nextDouble());
+        in.nextLine();
+        System.out.print("Digite o valor de venda: R$");
+        this.setValorVenda(in.nextDouble());
+        in.nextLine();
+        return this;
+    }
+
+    @Override
+    public void mostrarDetalhes() {
+
     }
 }

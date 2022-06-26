@@ -36,10 +36,10 @@ public class DVD extends Item{
     }
 
     @Override
-    public void mostrarItem() {
+    public void mostrarDetalhes() {
         System.out.println(this.getTitulo() + "(" + this.getGenero() + "): " + this.getAnoLancamento() + " - " + this.getDiretor());
     }
-    public void montarItem(Scanner in){
+    public Item montarItem(Scanner in){
         System.out.print("Digite o diretor do filme: ");
         this.setDiretor(in.nextLine());
         System.out.print("Digite a duração do filme: ");
@@ -48,5 +48,6 @@ public class DVD extends Item{
         System.out.print("Digite o ano de lançamento do filme: ");
         this.setAnoLancamento(in.nextInt());
         in.nextLine();
+        return this;
     }
 }

@@ -2,7 +2,7 @@ package classes;
 
 import java.util.Scanner;
 
-public class Livro extends Item{
+public class Livro extends Item implements Criavel{
     private String autor;
     private int qtdePaginas;
     private int anoPublicacao;
@@ -44,12 +44,12 @@ public class Livro extends Item{
     }
 
     @Override
-    public void mostrarItem() {
+    public void mostrarDetalhes() {
         System.out.println(this.getTitulo() + "(" + this.getGenero() + "): " + this.getAnoPublicacao() + " - " + this.getAutor());
     }
 
     @Override
-    public void montarItem(Scanner in) {
+    public Item montarItem(Scanner in) {
         System.out.print("Digite o autor: ");
         this.setAutor(in.nextLine());
         System.out.print("Digite a quantidade de páginas: ");
@@ -60,5 +60,6 @@ public class Livro extends Item{
         System.out.print("Digite a edição do livro: ");
         this.setEdicao(in.nextInt());
         in.nextLine();
+        return this;
     }
 }
