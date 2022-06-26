@@ -54,13 +54,6 @@ public class Main {
                         break;
                 }
             }
-            System.out.print("Digite o título: ");
-            item.setTitulo(in.nextLine());
-            System.out.print("Digite o gênero: ");
-            item.setGenero(in.nextLine());
-            System.out.print("Digite o valor: R$");
-            item.setValor(in.nextDouble());
-            in.nextLine();
             item.montarItem(in);
             System.out.println("------------------------------------------------------");
             estante.adicionarItem(item);
@@ -86,7 +79,7 @@ public class Main {
                 i.avaliar();
                 break;
             case 2:
-                if (i.getAvaliacoes()[0] == null) {
+                if (i.getAvaliacoes().isEmpty()) {
                     System.out.println("Ainda não avaliaram esse item! Para avaliá-lo agora, digite 1. Se quiser voltar ao menu, digite qualquer outra coisa: ");
                     if (in.nextLine().equals("1")) {
                         i.avaliar();
@@ -133,7 +126,7 @@ public class Main {
             Item itemf = estante.getItensEstante()[j];
             if (itemf != null) {
                 System.out.println("---------------------------");
-                itemf.mostrarItem();
+                itemf.mostrarDetalhes();
                 System.out.println("Posição na estante: " + j);
             }
         }

@@ -1,12 +1,12 @@
 package classes;
 
-public class Pedido {
-    private String nomeCliente;
-    private Item[] itensPedido;
+import java.util.ArrayList;
 
-    public void finalizar(Loja loja){
-        //todo
-    }
+public abstract class Pedido {
+    private String nomeCliente;
+    private ArrayList<ItemPedido> itensPedido;
+
+    public abstract void finalizar(Loja loja);
     //GETTERS & SETTERS
 
     public String getNomeCliente() {
@@ -17,11 +17,11 @@ public class Pedido {
         this.nomeCliente = nomeCliente;
     }
 
-    public Item[] getItensPedido() {
+    public ArrayList<ItemPedido> getItensPedido() {
         return itensPedido;
     }
 
-    public void setItensPedido(Item[] itensPedido) {
+    public void setItensPedido(ArrayList<ItemPedido> itensPedido) {
         this.itensPedido = itensPedido;
     }
 }
