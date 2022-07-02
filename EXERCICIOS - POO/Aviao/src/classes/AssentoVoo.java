@@ -2,7 +2,7 @@ package classes;
 
 public class AssentoVoo extends Assento{
     private String codigo;
-    private String classe;
+    private TipoAssentoVoo classe;
 
 
     //GETTERS & SETTERS
@@ -15,11 +15,11 @@ public class AssentoVoo extends Assento{
         this.codigo = codigo;
     }
 
-    public String getClasse() {
+    public TipoAssentoVoo getClasse() {
         return classe;
     }
 
-    public void setClasse(String classe) {
+    public void setClasse(TipoAssentoVoo classe) {
         this.classe = classe;
     }
 

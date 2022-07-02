@@ -7,9 +7,15 @@ public class DVD extends Item{
     private double duracao;
     private int anoLancamento;
 
+    // GETTERS & SETTERS
 
-    //GETTERS E SETTERS
+    public String getDiretor() {
+        return diretor;
+    }
 
+    public void setDiretor(String diretor) {
+        this.diretor = diretor;
+    }
 
     public double getDuracao() {
         return duracao;
@@ -27,27 +33,21 @@ public class DVD extends Item{
         this.anoLancamento = anoLancamento;
     }
 
-    public String getDiretor() {
-        return diretor;
-    }
-
-    public void setDiretor(String diretor) {
-        this.diretor = diretor;
+    @Override
+    public void montarDetalhes(Scanner in) {
+        System.out.println("Informe o diretor: ");
+        this.setDiretor(in.nextLine());
+        System.out.println("Informe o ano de lançamento: ");
+        this.setAnoLancamento(in.nextInt());
+        System.out.println("Informe a duração");
+        this.setDuracao(in.nextDouble());
+        in.nextLine();
     }
 
     @Override
     public void mostrarDetalhes() {
-        System.out.println(this.getTitulo() + "(" + this.getGenero() + "): " + this.getAnoLancamento() + " - " + this.getDiretor());
-    }
-    public Item montarItem(Scanner in){
-        System.out.print("Digite o diretor do filme: ");
-        this.setDiretor(in.nextLine());
-        System.out.print("Digite a duração do filme: ");
-        this.setDuracao(in.nextDouble());
-        in.nextLine();
-        System.out.print("Digite o ano de lançamento do filme: ");
-        this.setAnoLancamento(in.nextInt());
-        in.nextLine();
-        return this;
+        System.out.println("Diretor: "+this.getDiretor());
+        System.out.println("Ano de lançamento: "+this.getAnoLancamento());
+        System.out.println("Duração: "+this.getDuracao());
     }
 }

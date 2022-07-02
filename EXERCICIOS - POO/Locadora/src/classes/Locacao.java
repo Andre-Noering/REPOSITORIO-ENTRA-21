@@ -22,6 +22,7 @@ public class Locacao extends Pedido {
     public void finalizar(Loja loja){
         double valorTotal=0.0;
         for (ItemPedido item : getItensPedido()){
+            System.out.printf("%s - R$%.2f", item.getTitulo(), item.getValorLocacao());
             valorTotal+=item.getValorLocacao();
             item.setEmprestado(true);
             for (Estante e:loja.getEstantes()){
@@ -30,6 +31,6 @@ public class Locacao extends Pedido {
                 }
             }
         }
-        System.out.println("Valor total da locação: R$"+valorTotal);
+        System.out.printf("Valor total da locação: R$%.2s\nDevolução: %s",valorTotal, devolucao);
     }
 }

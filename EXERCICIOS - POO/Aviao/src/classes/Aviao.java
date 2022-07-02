@@ -11,7 +11,7 @@ public class Aviao implements MeioTransporte {
         for (int i = 1; i <= linhasCadeirasLuxo; i++) {
             for (int j = 0; j < 4; j++) {
                 AssentoVoo a = new AssentoVoo();
-                a.setClasse("Luxo");
+                a.setClasse(TipoAssentoVoo.LUXO);
                 if (i < 10) {
                     a.setCodigo(letrasLuxo.charAt(j) + "0" + String.valueOf(i));
 
@@ -25,11 +25,11 @@ public class Aviao implements MeioTransporte {
         for (int i = 1; i <= linhasCadeirasEconomicas; i++) {
             for (int j = 0; j < 6; j++) {
                 AssentoVoo a = new AssentoVoo();
-                a.setClasse("Econômico");
+                a.setClasse(TipoAssentoVoo.ECONOMICA);
                 if (i < 10) {
                     a.setCodigo(letrasEco.charAt(j) + "0" + String.valueOf(i));
                 } else {
-                    a.setCodigo(letrasLuxo.charAt(j) + String.valueOf(i));
+                    a.setCodigo(letrasEco.charAt(j) + String.valueOf(i));
                 }
                 assentos.add(a);
             }
@@ -71,7 +71,7 @@ public class Aviao implements MeioTransporte {
         int cont=0;
         for (int i = 0; i < this.assentos.size(); i++) {
             AssentoVoo a = assentos.get(i);
-            if (a.getClasse().equalsIgnoreCase("luxo")) {
+            if (a.getClasse().equals(TipoAssentoVoo.LUXO)) {
                 if (i % 4 == 0) {
                     System.out.println("");
                     System.out.print("      ");
@@ -105,19 +105,9 @@ public class Aviao implements MeioTransporte {
     }
     @Override
     public Assento getAssento(String assento) {
-        for (AssentoVoo a : assentos) {
-            if (a.getCodigo().equalsIgnoreCase(assento)) {
-                return a;
-            }
-        }
-        return null;
+        for (AssentoVoo a : assentos) {if (a.getCodigo().equalsIgnoreCase(assento)) {return a;}}return null;
     }
     public Assento getAssento(String assento, String classe) {
         for (AssentoVoo a : assentos) {
-            if (a.getCodigo().equalsIgnoreCase(assento) && a.getClasse().equalsIgnoreCase(classe)) {
-                return a;
-            }
-        }
-        return null;
-    }
+            if (a.getCodigo().equalsIgnoreCase(assento) && a.getClasse().equals(classe)) {return a;}}return null;}
 }

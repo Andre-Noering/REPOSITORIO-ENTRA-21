@@ -1,16 +1,18 @@
 package classes;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Loja {
-    private ArrayList<Estante> estantes;
+    private HashMap<String, Estante> estantes=new HashMap<>();
 
     //GETTERS & SETTERS
-    public ArrayList<Estante> getEstantes() {
+
+    public HashMap<String, Estante> getEstantes() {
         return estantes;
     }
 
-    public void setEstantes(ArrayList<Estante> estantes) {
+    public void setEstantes(HashMap<String, Estante> estantes) {
         this.estantes = estantes;
     }
 }

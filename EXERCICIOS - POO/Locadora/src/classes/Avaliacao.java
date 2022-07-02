@@ -5,7 +5,7 @@ public class Avaliacao {
     private String nome;
     private String feedback;
 
-    //GETTERS E SETTERS
+    // GETTERS & SETTERS
 
     public double getRating() {
         return rating;
