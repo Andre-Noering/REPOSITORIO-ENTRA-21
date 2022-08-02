@@ -25,22 +25,19 @@ public class Main {
 
     private static Lanche montarLanche() {
         System.out.println("-MENU: Escolha uma opção-");
-        System.out.println("(1) - X-Salada");
-        System.out.println("(2) - X-Burguer");
-        System.out.println("(3) - Misto Quente");
-        System.out.println("(4) - Hot Dog");
-        System.out.println("(5) - Mini Pizza");
-        System.out.println("(6) - Pizza");
-        int escolha = in.nextInt();
+        for (ETipoLanche menu : ETipoLanche.values()) {
+            System.out.printf("(%d) - %s\n", menu.getValorOpcao(), menu.getDescricao());
+        }
+        ETipoLanche escolha = ETipoLanche.getByValorOpcao(in.nextInt());
         in.nextLine();
         Lanche lanche = null;
         switch (escolha) {
-            case 1 -> lanche = new XSalada();
-            case 2 -> lanche = new XBurguer();
-            case 3 -> lanche = new MistoQuente();
-            case 4 -> lanche = new HotDog();
-            case 5 -> lanche = new MiniPizza();
-            case 6 -> lanche = new Pizza();
+            case XSALADA -> lanche = new XSalada();
+            case XBURGUER -> lanche = new XBurguer();
+            case MISTO_QUENTE -> lanche = new MistoQuente();
+            case HOT_DOG -> lanche = new HotDog();
+            case MINI_PIZZA -> lanche = new MiniPizza();
+            case PIZZA -> lanche = new Pizza();
             default -> System.err.println("Escolha uma opção válida!");
         }
         lanche.montarDetalhesLanche(in);
