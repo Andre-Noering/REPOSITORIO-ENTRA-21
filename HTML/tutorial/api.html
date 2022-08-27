@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript">
+        function loadImg(){
+            let req=new XMLHttpRequest();
+            req.open("GET", "https://cataas.com/cat?json=true",true);
+            req.onload = () => {
+                let img=document.getElementsByTagName("img")[0];
+                img.src = "https://cataas.com/" +JSON.parse(req.responseText).url;
+                img.id="gato-carregado";
+                img.onload = () => {document.getElementsByTagName("button")[0].disabled = false;
+                document.getElementsByTagName("button")[1].disabled = false;
+                document.getElementsByTagName("button")[2].disabled = false;
+                document.getElementsByTagName("p")[0].textContent= "Clica = Outro gato."
+                document.getElementsByTagName("p")[1].textContent= "Clica = Outro gato+Texto."
+                document.getElementsByTagName("p")[2].textContent= "Clica = Ganha gif de gato."
+            }
+            }
+            req.send(null);
+            document.getElementsByTagName("button")[0].disabled = true;
+            document.getElementsByTagName("button")[1].disabled = true;
+            document.getElementsByTagName("button")[2].disabled = true;
+            
+        }
+
+        function loadImgWithText(){
+
+            let texto = prompt("Informe o texto para a imagem: ")
+            if (texto==null){
+                
+            }else if (texto===""){
+                loadImg();
+            } else {
+            let req=new XMLHttpRequest();
+            req.open("GET", `https://cataas.com/cat/says/${texto}?json=true`,true);
+            req.onload = () => {
+                let img=document.getElementsByTagName("img")[0];
+                img.src = "https://cataas.com/" +JSON.parse(req.responseText).url;
+                img.id="gato-carregado";
+                img.onload = () => {document.getElementsByTagName("button")[0].disabled = false;
+                document.getElementsByTagName("button")[1].disabled = false;
+                document.getElementsByTagName("button")[2].disabled = false;
+                document.getElementsByTagName("p")[0].textContent= "Clica = Outro gato(sem texto)."
+                document.getElementsByTagName("p")[1].textContent= "Clica = Outro gato, outro texto."
+                document.getElementsByTagName("p")[2].textContent= "Clica = Ganha gif de gato."
+            }
+            }
+            req.send(null);
+            document.getElementsByTagName("button")[0].disabled = true;
+            document.getElementsByTagName("button")[1].disabled = true;
+            document.getElementsByTagName("button")[2].disabled = true;
+        }
+    }
+    function loadGif(){
+        let req=new XMLHttpRequest();
+            req.open("GET", "https://cataas.com/cat/gif?json=true",true);
+            req.onload = () => {
+                let img=document.getElementsByTagName("img")[0];
+                img.src = "https://cataas.com/" +JSON.parse(req.responseText).url;
+                img.id="gato-carregado";
+                img.onload = () => {document.getElementsByTagName("button")[0].disabled = false;
+                document.getElementsByTagName("button")[1].disabled = false;
+                document.getElementsByTagName("button")[2].disabled = false;
+                document.getElementsByTagName("p")[0].textContent= "Clica = Outro gato."
+                document.getElementsByTagName("p")[1].textContent= "Clica = Outro gato+Texto."
+                document.getElementsByTagName("p")[2].textContent= "Clica = Outro gif."
+            }
+            }
+            req.send(null);
+            document.getElementsByTagName("button")[0].disabled = true;
+            document.getElementsByTagName("button")[1].disabled = true;
+            document.getElementsByTagName("button")[2].disabled = true;
+        }
+    
+    </script>
+</head>
+<body>
+    <div id="conj-gato">
+    <img id class="foto-gato" src/>
+    <div id="bot-gato">
+    <button class = "btn btn-gato" onclick="loadImg()"><p id="texto-botao-gato" style="margin: 0;">Clica = Ganha gato.</p></button>
+    <button class = "btn btn-gato" onclick="loadImgWithText()"><p id="texto-botao-gato" style="margin: 0;">Clica = Ganha gato+texto.</p></button>
+    <button class = "btn btn-gato" onclick="loadGif()"><p id="texto-botao-gato" style="margin: 0;">Clica = Ganha gif de gato.</p></button>
+</div>
+    </div>
+</body>
+</html>

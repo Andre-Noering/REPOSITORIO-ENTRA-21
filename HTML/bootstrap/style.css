@@ -1,0 +1,17 @@
+html,body{
+    margin:0;
+    height: 100%;
+    background-color: rgb(248,249,250);
+}
+
+.bg-teal{
+    background-color: rgb(94, 170, 170);
+}
+
+div.footer{
+    padding:24px;
+    background-color: rgb(94, 170, 170);
+}
+a.mylink{
+    font-size: 20px;
+}
