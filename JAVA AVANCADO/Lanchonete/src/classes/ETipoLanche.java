@@ -14,7 +14,14 @@ ETipoLanche(int valor, String descricao){
     valorOpcao=valor;
     this.descricao=descricao;
 }
-
+    public static ETipoLanche getByValorOpcao(int escolha) {
+        for (ETipoLanche e : ETipoLanche.values()) {
+            if (e.getValorOpcao() == escolha) {
+                return e;
+            }
+        }
+        return null;
+    }
     public String getDescricao() {
         return descricao;
     }

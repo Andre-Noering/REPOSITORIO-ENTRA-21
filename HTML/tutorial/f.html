@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Formulários</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript">
+
+  
+  
+        function onClick() {
+          alert("Obrigado. Você fez do mundo um lugar melhor!")
+        }
+  
+      
+      </script>
+</head>
+<body id="body_form">
+    <h1 style="text-align: center; margin-bottom:0;">Formulário de Livramento</h1>
+    <div id="Forms">
+        <form>
+            <div id="dados_p">
+                <h1 id="tit_dad">Dados Pessoais: </h1>
+                <label for="nome">Nome: </label><br/>
+                <input type="text" id="nome"><br/><br/>
+                <label for="idade">Idade: </label><br/>
+                <input type="number" id="idade"><br/><br/>
+                <label for="data">Data de Nascimento: </label><br/>
+                <input type="date" id="data"><br/><br/>
+                <label for="cpf">CPF: </label><br/>
+                <input type="text" id="cpf"><br/>
+            </div>
+            <div id="cart">
+                <h1 id="tit_cart">Dados do Cartão:</h1>
+            <label for="num">*Nº do cartão: </label><br/>
+            <input id="num" type="text"><br/><br/>
+            <label for="pass">*Senha: </label><br/>
+            <input type="password" id="pass"><br/><br/>
+            <label for="n_seg">*Nº de segurança: </label><br/>
+            <input type="password" id="n_seg">
+            <br/>
+            <h4 style="margin-top:35px;margin-bottom:10px;">Está disposto a ajudar na vaquinha para a multa do véio? </h4>
+            <input class="mark" type="radio" name="radio" id="rd_1">
+            <label class="mark" for="rd_1">Sim</label><br/>
+            <input class="mark" type="radio" name="radio" id="rd_2">
+            <label class="mark" for="rd_2">Com certeza</label><br/>
+            <input class="mark" type="radio" name="radio" id="rd_3">
+            <label class="mark" for="rd_3">Certamente</label><br/>
+            <input onclick="onClick()" style="margin-top: 20px;" type="submit" value="Enviar" id="butao">
+            </div>
+
+        </form>
+    </div>    
+</body>
+</html>

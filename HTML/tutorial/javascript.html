@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript</title>
+    <script>
+        function getMsg(){
+            return new Promise((resolve) => {
+                setTimeout(()=> {
+                    resolve("Eu <3 JavaScript");
+                },3000);
+            });
+        }
+        
+        async function asyncMsg(){
+            document.getElementById("async")
+            .innerHTML = await getMsg();
+            document.getElementById("async-btn").style= "display:none;";
+        }
+        
+        function submitMsg(){
+            let msg=document.getElementById("input-txt").value;
+            document.getElementById("input-txt").value="";
+            let p =document.createElement("p");
+            p.textContent=msg;
+            document.getElementById("text-padrao").appendChild(p);
+        };
+        document.onreadystatechange = function(){
+            if (document.readyState==="complete"){
+        document.getElementById("input-txt").addEventListener("keydown", function(e){
+            if (e.key==="Enter"|| e.keyValue===13){
+                submitMsg();
+            }
+        })
+        }}
+    </script>
+</head>
+<body>
+    <div id="text-padrao">
+
+    </div>
+    <input type="text" name="teste" id="input-txt">
+    <button onclick="submitMsg()">Enviar</button>
+    <div id="async"></div>
+    <button id="async-btn" onclick="asyncMsg()">Mensagem</button>
+    
+</body>
+</html>

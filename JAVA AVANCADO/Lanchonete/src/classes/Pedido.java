@@ -6,7 +6,6 @@ import java.util.ArrayList;
 
 public class Pedido {
     private ArrayList<Lanche> lanches = new ArrayList();
-
     public void imprimirComanda() {
         for (Lanche l : this.getLanches()) {
             l.mostrarDetalhesComanda();
